@@ -2,7 +2,7 @@ let randomWords = require('random-words'),
     fs = require('fs');
 
 // Settings/defaults
-let numKeyVals = 100,
+let numKeyVals = 200,
     types = ['word', 'words', 'string', 'integer', 'decimal', 'date', 'boolean', 'null'];
     filename = 'result.json',
     wordsMin = 1,
@@ -103,10 +103,12 @@ function getRandom() {
 
 // Generate and save random JSON file
 
+let keys = randomWords({ exactly: numKeyVals });
+
 let json = '{\n';
 let arr = [];
-for (let i = 0; i <= numKeyVals; i++) {
-    let kv = '"' + getWord() + '"'; // key
+for (let i = 0; i < numKeyVals; i++) {
+    let kv = '"' + keys[i] + '"'; // key
     kv += ': ';
     kv += getRandom(); // value
     arr.push(kv);
